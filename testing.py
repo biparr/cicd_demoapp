@@ -4,7 +4,7 @@ import unittest
 
 class FlaskTestCase(unittest.TestCase):
 
-    def setUp(self):
+def setUp(self):
         demoapp.app.config['TESTING'] = True
         self.app = demoapp.app.test_client()
 
@@ -15,6 +15,14 @@ class FlaskTestCase(unittest.TestCase):
     def test_correct_content(self):
         resp = self.app.get('/hello/world')
         self.assertEquals(resp.data, '"Hello World!"\n')
+
+    def test_universe_correct_http_response(self):
+        resp = self.app.get('/hello/universe')
+        self.assertEquals(resp.status_code, 200)
+
+    def test_universe_correct_content(self):
+        resp = self.app.get('/hello/universe')
+        self.assertEquals(resp.data, '"Hello Universe!"\n')
 
     def tearDown(self):
         pass

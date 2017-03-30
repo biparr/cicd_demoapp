@@ -4,7 +4,7 @@ import unittest
 
 class FlaskTestCase(unittest.TestCase):
 
-def setUp(self):
+    def setUp(self):
         demoapp.app.config['TESTING'] = True
         self.app = demoapp.app.test_client()
 
